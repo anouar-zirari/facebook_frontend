@@ -1,31 +1,38 @@
 
-<div class="row">
-    <app-nav-bar></app-nav-bar>
-</div>
-
-<div class="container">
-
-    <div class="row text-center mt-4">
-        <div class="col-3">
-            <ul class="position-fixed mx-auto">
-                <li>
-                    <a routerLink="/facebook/profile">Profile</a>
-                </li>
-                <li>l;kjasdf;</li>
-                <li>ljsadf;lkj</li>
-            </ul>
-        </div>
-
-        <div class="col-6 text-center">
-            <router-outlet></router-outlet>
-        </div>
-        
-        <div class="col-3">
-            <ul class="position-fixed">
-                <li>lkasjdflkj</li>
-                <li>l;kjasdf;</li>
-                <li>ljsadf;lkj</li>
-            </ul>
+<div *ngIf="loginService.isLogedin">
+    <div class="row">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    
+    <div class="container">
+    
+        <div class="row text-center mt-4">
+            <div class="col-3">
+                <ul class="position-fixed mx-auto">
+                    <li>
+                        <a routerLink="/facebook/profile">Profile</a>
+                    </li>
+                    <li>l;kjasdf;</li>
+                    <li>ljsadf;lkj</li>
+                </ul>
+            </div>
+    
+            <div class="col-6 text-center">
+                <router-outlet></router-outlet>
+            </div>
+            
+            <div class="col-3">
+                <ul class="position-fixed">
+                    <li>lkasjdflkj</li>
+                    <li>l;kjasdf;</li>
+                    <li>ljsadf;lkj</li>
+                </ul>
+            </div>
         </div>
     </div>
+</div>
+
+
+<div class="mx-auto" *ngIf="!loginService.isLogedin">
+    <app-login></app-login>
 </div>

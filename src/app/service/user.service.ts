@@ -8,13 +8,29 @@ import { User } from '../model/user';
 })
 export class UserService {
 
-  apiUrl = ''
+  apiUrl = 'http://localhost:8080/api/v1/user';
+  userFromLogin!: User;
 
   constructor(private http: HttpClient) { }
 
 
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(this.apiUrl);
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
+
+  getFriendForUser(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/friends/${id}`);
+  }
+
+  setUser(user: User){
+   this.userFromLogin = user;
+  }
+
+  get user() {
+    return this.userFromLogin;
+  }
+
+  
+
 
 }

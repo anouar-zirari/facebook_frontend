@@ -1,0 +1,32 @@
+<div><!--style="overflow: scroll; height: 100vh"-->
+    <!--profile image and user name-->
+    <div class="card text-center">
+        <img class="card-img-top w-50 mt-5 mx-auto" src="../../../assets/images/téléchargement.jpg" alt="Title">
+        <div class="card-body">
+            <h4 class="card-title">{{user.firstName + " " + user.lastName}}</h4>
+        </div>
+        <hr>
+        <div class="btn-group">
+            <button class="btn" (click)="toggle('posts')">Posts</button>
+            <button class="btn" (click)="toggle('friends'); getFriendForUser()">Friends</button>
+            <button class="btn">Add friend</button>
+        </div>
+    </div>
+
+    <div class="mt-4"></div>
+    <!--posts of the user-->
+    <div *ngIf="shownElement == 'posts'">
+        <app-post></app-post>
+    </div>
+    <!--friends of the user-->
+    <div *ngIf="shownElement == 'friends'">
+        <ul class="list-group" *ngFor="let friend of friends">
+            <li class="list-group-item clickable" 
+            routerLink="[/facebook/friend-profile, user.id]">
+                <img src="../../../assets/images/user.png" class="w-25" alt="image">
+                <span class="mr-4">{{friend.firstName + " " + friend.lastName }}</span>
+            </li>
+        </ul>
+    </div>
+
+</div>

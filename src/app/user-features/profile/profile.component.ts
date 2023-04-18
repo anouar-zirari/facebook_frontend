@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatusComponent } from '../status/status.component';
 import { PostComponent } from '../post/post.component';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.shownElement = 'posts';
@@ -24,6 +25,10 @@ export class ProfileComponent implements OnInit {
 
   toggle(elementName: string){
     this.shownElement = elementName;
+  }
+
+  get user(){
+    return this.userService.userFromLogin;
   }
 
 }
