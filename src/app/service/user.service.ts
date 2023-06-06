@@ -9,7 +9,7 @@ import { User } from '../model/user';
 export class UserService {
 
   apiUrl = 'http://localhost:8080/api/v1/user';
-  userFromLogin!: User;
+  logedUser!: User;
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class UserService {
   }
 
   setUser(user: User){
-   this.userFromLogin = user;
+   this.logedUser = user;
   }
 
   get user() {
-    return this.userFromLogin;
+    return this.logedUser;
   }
 
   

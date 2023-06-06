@@ -1,0 +1,31 @@
+<ul class="list-group" >
+    <!--sended requests-->
+    <li class="list-group-item clickable" *ngFor="let notification of notifications">
+        <img src="../../../assets/images/user.png" class="w-25" alt="image">
+        <span class="mr-4" *ngIf="notification.senderId == userServcie.logedUser.id">
+            {{notification.receiverFirstName + " " + notification.receiverLastName}}
+        </span> 
+        <span class="mr-4" *ngIf="notification.senderId != userServcie.logedUser.id">
+            {{notification.senderFirstName + " " + notification.senderLastName}}
+        </span> 
+        <span class="float-left">{{ notification.date | date}}</span> <br>
+        <button class="btn btn-primary inabled" 
+        *ngIf="notification.senderId == userServcie.logedUser.id">
+            no response
+        </button>
+        <button class="btn btn-primary inabled" 
+        *ngIf="notification.senderId != userServcie.logedUser.id">
+            accept
+        </button>
+        <button class="btn btn-primary inabled" 
+        *ngIf="notification.senderId != userServcie.logedUser.id">
+            reject
+        </button>
+        <span></span>
+    </li>
+    <!--sended requests-->
+</ul>
+
+
+
+

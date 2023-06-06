@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { LoginComponent } from './login/login.component';
     NgbModule,
     HttpClientModule, 
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

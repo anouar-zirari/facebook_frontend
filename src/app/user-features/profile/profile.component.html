@@ -3,7 +3,9 @@
     <div class="card text-center">
         <img class="card-img-top w-50 mt-5 mx-auto" src="../../../assets/images/user.png" alt="Title">
         <div class="card-body">
-            <h4 class="card-title">{{user.firstName + " " + user.lastName}}</h4>
+            <h4 class="card-title">
+                {{userService.user.firstName + " " + userService.user.lastName}}
+            </h4>
         </div>
         <hr>
         <div class="btn-group">
@@ -20,33 +22,18 @@
     </div>
     <!--friends of the user-->
     <div *ngIf="shownElement == 'friends'">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active"
-                aria-current="true">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Heading</h5>
-                    <small class="text-muted">Description</small>
-                </div>
-                <p class="mb-1">Paragraph</p>
-                <small class="text-muted">paragraph footer</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Heading</h5>
-                    <small class="text-muted">Description</small>
-                </div>
-                <p class="mb-1">Paragraph</p>
-                <small class="text-muted">paragraph footer</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabled">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Heading</h5>
-                    <small class="text-muted">Description</small>
-                </div>
-                <p class="mb-1">Paragraph</p>
-                <small class="text-muted">paragraph footer</small>
-            </a>
+        <ul class="list-group" *ngFor="let friend of friends">
+            <li class="list-group-item clickable" routerLink="[/facebook/friend-profile, user.id]">
+                <img src="../../../assets/images/user.png" class="w-25" alt="image">
+                <span class="mr-4">{{friend.firstName + " " + friend.lastName }}</span>
+            </li>
+        </ul>
+        <div class="alert alert-primary" role="alert" *ngIf="friends.length === 0">
+            <strong>Until now, there are no friends</strong> 
         </div>
     </div>
+
+    
+    
 
 </div>

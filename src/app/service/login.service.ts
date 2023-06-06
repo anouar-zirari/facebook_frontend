@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { User } from '../model/user';
 
 @Injectable({
@@ -15,7 +15,12 @@ export class LoginService {
   constructor(private http: HttpClient,private userService: UserService) { }
 
   login(user: User):Observable<User>{
-    return this.http.post<User>(`${this.apiUrl}/login`, user);
+    return this.http.post<User>(`${this.apiUrl}/login`, user).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        throw error;
+      })
+    )
   }
 
 }

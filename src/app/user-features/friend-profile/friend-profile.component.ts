@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { FreindProfileService } from 'src/app/service/friend-profile-service';
 import { UserService } from 'src/app/service/user.service';
+import { InvitationService } from 'src/app/service/invitation.service';
+import { Invitation } from 'src/app/model/invitation';
 
 @Component({
   selector: 'app-friend-profile',
@@ -26,7 +28,8 @@ export class FriendProfileComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private friendProfileService: FreindProfileService,
-    private userService: UserService
+    private userService: UserService,
+    private invitationService: InvitationService
     ) { }
 
   ngOnInit(): void {
@@ -56,4 +59,13 @@ export class FriendProfileComponent implements OnInit {
       }
     )
   }
+
+  addFriend(receiver: User, sender = this.userService.user){
+    let invitation: Invitation = new Invitation(receiver, sender);
+    
+    this.invitationService.friendshipInvitation(invitation).subscribe(
+      // change the alert by toast
+      () => alert("A friend request has been sent")
+    );
+  } 
 }
