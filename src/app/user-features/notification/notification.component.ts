@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NotificationServcice } from 'src/app/service/notification.service';
 import { UserService } from 'src/app/service/user.service';
 import { Notification } from 'src/app/model/notification';
-
+import { InvitationService } from 'src/app/service/invitation.service';
 
 
 @Component({
@@ -19,7 +19,9 @@ export class NotificationComponent implements OnInit {
 
   constructor(
     private notificationServcie: NotificationServcice, 
-    public userServcie: UserService) { }
+    public userServcie: UserService,
+    private invitationService: InvitationService
+    ) { }
 
   ngOnInit(): void {
     this.notificationServcie.getAllFriendshipNotificationForUser(
@@ -30,4 +32,11 @@ export class NotificationComponent implements OnInit {
   }
 
 
+  friendShipResponse(senderId: number, receiverId: number, response: boolean){
+    if(response === true){
+      this.invitationService.friendshipResponse(senderId, receiverId, response).subscribe(
+        () => alert("response is saved... or somthing like that")
+      );
+    }
+  }
 }

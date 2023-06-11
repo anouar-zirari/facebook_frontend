@@ -7,8 +7,8 @@ export class Invitation {
     receiver!: User;
     sender!: User;
     
-    constructor(receiver: User, sender: User) {
-        this.receiver = receiver;
-        this.sender = sender;
+    constructor(receiver?: User, sender?: User) {
+        this.receiver = receiver as User;
+        this.sender = sender as User;
     }
 }

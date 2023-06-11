@@ -14,16 +14,17 @@
             no response
         </button>
         <button class="btn btn-primary inabled" 
-        *ngIf="notification.senderId != userServcie.logedUser.id">
+        *ngIf="notification.senderId != userServcie.logedUser.id" (click)="friendShipResponse(notification.senderId, notification.receiverId, true)">
             accept
         </button>
         <button class="btn btn-primary inabled" 
-        *ngIf="notification.senderId != userServcie.logedUser.id">
+        *ngIf="notification.senderId != userServcie.logedUser.id"  
+        (click)="friendShipResponse(notification.senderId, 
+        notification.receiverId, false)">
             reject
         </button>
         <span></span>
     </li>
-    <!--sended requests-->
 </ul>
 
 

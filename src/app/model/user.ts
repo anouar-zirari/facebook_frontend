@@ -1,4 +1,5 @@
 import { Gender } from "./gender";
+import { Post } from "./post";
 
 export class User {
 
@@ -9,5 +10,6 @@ export class User {
     email!: string;
     gender!: Gender;
     friends!: User[];
+    posts!: Post[];
     
 }

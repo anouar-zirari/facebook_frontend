@@ -1,32 +1,19 @@
-<div class="card text-center w-75 mx-auto ">
+<div class="card text-center w-75 mx-auto mt-3" *ngFor="let post of posts">
     <div class="text-start inline-block">
         <img src="../../../assets/images/téléchargement.jpg" alt="" class="w-25">
-        <p>username</p>
+        <p>{{ userService.user.firstName + " " + userService.user.lastName }} <br> 
+            <small>{{post.date | date}}</small>
+        </p>
+        
     </div>
     <div class="card-body">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id rerum voluptate voluptates
-            laudantium facilis repellendus dolor quam, est sed et repudiandae nostrum. Dicta debitis
-            praesentium fuga explicabo. Corrupti, dolorum minus.</p>
+        <p>{{post.content}}</p>
     </div>
-    <img class="card-img-top" src="../../../assets/images/téléchargement.jpg" alt="Title">
+    <!-- <img class="card-img-top" src="" alt="Title"> -->
     <hr>
     <div class="btn-group">
-        <button class="btn">Like 10</button>
+        <button class="btn">{{post?.likes ?? 0}} Like</button>
         <button class="btn">Coment 0</button>
         <button class="btn">Share 12</button>
-    </div>
-</div>
-<div class="card text-center mt-2 w-75 mx-auto">
-    <img class="card-img-top" src="../../../assets/images/téléchargement.jpg" alt="Title" *ngIf="stute.image">
-    <div class="card-body">
-        <p>
-            {{stute.text}}
-        </p>
-        <hr>
-        <div class="btn-group">
-            <button class="btn">Like 12</button>
-            <button class="btn">Coment 1</button>
-            <button class="btn">Share5</button>
-        </div>
     </div>
 </div>
