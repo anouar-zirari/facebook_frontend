@@ -1,5 +1,5 @@
 export enum Status {
-    ACCEPT,
-    REFUSE,
-    WAITING
+    ACCEPT = "ACCEPT",
+    REFUSE = "REFUSE",
+    WAITING = "WAITING"
 }

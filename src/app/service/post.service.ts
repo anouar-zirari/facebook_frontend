@@ -36,4 +36,9 @@ export class Postservice {
     }
 
 
+    getCommunity() {
+        return this.http.post<Post[]>(`${this.apiUrl}/community`, this.userService.user);
+    }
+
+
 }

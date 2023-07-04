@@ -9,7 +9,22 @@
         <div class="btn-group">
             <button class="btn" (click)="toggle('posts')">Posts</button>
             <button class="btn" (click)="toggle('friends'); getFriendForUser()">Friends</button>
-            <button class="btn" (click)="addFriend(user)">Add friend</button>
+            <button class="btn" (click)="addFriend(user)" 
+            *ngIf="invitation == null">
+                Add friend
+            </button>
+            <button class="btn"  
+            *ngIf="invitation.status == status.ACCEPT">
+                You are friends 
+            </button>
+            <button class="btn"  
+            *ngIf="invitation.status == status.REFUSE">
+                Your request has refuesed 
+            </button>
+            <button class="btn"  
+            *ngIf="invitation.status == status.WAITING">
+                Waiting for response
+            </button>
         </div>
     </div>
 
@@ -21,14 +36,13 @@
     <!--friends of the user-->
     <div *ngIf="shownElement == 'friends'">
         <ul class="list-group" *ngFor="let friend of friends">
-            <li class="list-group-item clickable" 
-            routerLink="[/facebook/friend-profile, user.id]">
+            <li class="list-group-item clickable" routerLink="[/facebook/friend-profile, user.id]">
                 <img src="../../../assets/images/user.png" class="w-25" alt="image">
                 <span class="mr-4">{{friend.firstName + " " + friend.lastName }}</span>
             </li>
         </ul>
         <div class="alert alert-primary" role="alert" *ngIf="friends.length === 0">
-            <strong>Until now, there are no friends</strong> 
+            <strong>Until now, there are no friends</strong>
         </div>
     </div>
 

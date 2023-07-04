@@ -1,0 +1,29 @@
+<div class="btn-group">
+    <button class="btn" (click)="addLike()">{{likesNumber.numberOfLikes}} Likes</button>
+    <button class="btn" (click)="openComments()">
+        {{comments.length + " Comments"}}
+    </button>
+    <button class="btn">0 Share</button>
+</div>
+<div *ngIf="commentll == true">
+    <div class="row">
+        <div class="col-9">
+            <input type="text" class="form-control" placeholder="Add comment" [(ngModel)]="comment">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" (click)="addComment()">Submit</button>
+        </div>
+    </div>
+
+    <ul *ngFor="let comment of comments">
+        <li>
+            {{comment.user.firstName +" "+ comment.post.user.lastName}} <br>
+            {{comment.comment}}
+        </li>
+    </ul>
+    <div class="text-center mt-4">
+        <button class="btn btn-danger" (click)="closeComments()">
+            Close comment section
+        </button>
+    </div>
+</div>

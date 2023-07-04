@@ -1,32 +1,54 @@
-<ul class="list-group" >
+<ul class="list-group">
     <!--sended requests-->
     <li class="list-group-item clickable" *ngFor="let notification of notifications">
         <img src="../../../assets/images/user.png" class="w-25" alt="image">
         <span class="mr-4" *ngIf="notification.senderId == userServcie.logedUser.id">
             {{notification.receiverFirstName + " " + notification.receiverLastName}}
-        </span> 
+        </span>
         <span class="mr-4" *ngIf="notification.senderId != userServcie.logedUser.id">
             {{notification.senderFirstName + " " + notification.senderLastName}}
-        </span> 
+        </span>
         <span class="float-left">{{ notification.date | date}}</span> <br>
-        <button class="btn btn-primary inabled" 
-        *ngIf="notification.senderId == userServcie.logedUser.id">
-            no response
-        </button>
-        <button class="btn btn-primary inabled" 
-        *ngIf="notification.senderId != userServcie.logedUser.id" (click)="friendShipResponse(notification.senderId, notification.receiverId, true)">
-            accept
-        </button>
-        <button class="btn btn-primary inabled" 
-        *ngIf="notification.senderId != userServcie.logedUser.id"  
-        (click)="friendShipResponse(notification.senderId, 
-        notification.receiverId, false)">
-            reject
-        </button>
+        <div *ngFor="let invitation of invitationsBySender">
+            <span class="alert alert-secondary"
+                *ngIf="notification.senderId == userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status === status.WAITING">
+                No response for your request
+            </span>
+            <span class="alert alert-success"
+                *ngIf="notification.senderId == userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status === status.ACCEPT">
+                request accepted
+            </span>
+            <span class="alert alert-danger"
+                *ngIf="notification.senderId == userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status === status.REFUSE">
+                Request refuesed
+            </span>
+        </div>
+        <div *ngFor="let invitation of invitationsByReceiver">
+            <button class="btn btn-secondary inabled"
+                *ngIf="notification.senderId != userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status == status.WAITING"
+                (click)="friendShipResponse(notification.senderId, notification.receiverId, false)">
+                reject
+            </button>
+            <button class="btn btn-success inabled "
+                *ngIf="notification.senderId != userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status == status.WAITING"
+                (click)="friendShipResponse(notification.senderId, notification.receiverId, true)">
+                accept
+            </button>
+            <button class="btn btn-primary inabled"
+                *ngIf="notification.senderId != userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status == status.ACCEPT">
+                You accepted the request
+            </button>
+            <button class="btn btn-danger inabled"
+                *ngIf="notification.senderId != userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status == status.REFUSE">
+                You refuesed the request
+            </button>
+        </div>
+
+        <!-- <button class="btn btn-primary inabled" *ngIf="notification.senderId !=     userServcie.logedUser.id" (click)="friendShipResponse(notification.senderId, 
+        notification.receiverId, true)">
+                aceept
+            </button> -->
         <span></span>
+
     </li>
 </ul>
-
-
-
-

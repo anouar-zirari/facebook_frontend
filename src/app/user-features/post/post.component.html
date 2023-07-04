@@ -1,7 +1,7 @@
 <div class="card text-center w-75 mx-auto mt-3" *ngFor="let post of posts">
     <div class="text-start inline-block">
         <img src="../../../assets/images/téléchargement.jpg" alt="" class="w-25">
-        <p>{{ userService.user.firstName + " " + userService.user.lastName }} <br> 
+        <p>{{ post.user.firstName + " " + post.user.lastName }} <br> 
             <small>{{post.date | date}}</small>
         </p>
         
@@ -11,9 +11,6 @@
     </div>
     <!-- <img class="card-img-top" src="" alt="Title"> -->
     <hr>
-    <div class="btn-group">
-        <button class="btn">{{post?.likes ?? 0}} Like</button>
-        <button class="btn">Coment 0</button>
-        <button class="btn">Share 12</button>
-    </div>
+    <app-post-options [post]="post"></app-post-options>
+
 </div>

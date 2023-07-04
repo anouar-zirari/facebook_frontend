@@ -9,6 +9,7 @@ import { FreindProfileService } from 'src/app/service/friend-profile-service';
 import { UserService } from 'src/app/service/user.service';
 import { InvitationService } from 'src/app/service/invitation.service';
 import { Invitation } from 'src/app/model/invitation';
+import { Status } from 'src/app/model/status';
 
 @Component({
   selector: 'app-friend-profile',
@@ -24,6 +25,8 @@ export class FriendProfileComponent implements OnInit {
   userId!: number;
   user!: User;
   friends: User[] = [];
+  invitation: Invitation = new Invitation();
+  status = Status;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -35,8 +38,8 @@ export class FriendProfileComponent implements OnInit {
   ngOnInit(): void {
     this.shownElement = 'posts';
     this.userId = this.activeRoute.snapshot.params['userId'];
-    console.log(typeof(this.userId));
     this.getUserById(this.userId);
+    this.getInvitationBySenderAndReceiver(this.userService.logedUser.id, this.userId);
   }
 
   toggle(elementName: string){
@@ -62,10 +65,22 @@ export class FriendProfileComponent implements OnInit {
 
   addFriend(receiver: User, sender = this.userService.user){
     let invitation: Invitation = new Invitation(receiver, sender);
-    
+
     this.invitationService.friendshipInvitation(invitation).subscribe(
       // change the alert by toast
-      () => alert("A friend request has been sent")
+      () => 
+        alert("A friend request has been sent")
+          
     );
   } 
+
+  getInvitationBySenderAndReceiver(senderId: number, receiverId: number){
+    this.invitationService.getInvitationBySenderAndReceiver(senderId, receiverId).subscribe(data => {
+      this.invitation = data;
+      console.log(data);
+      
+    })
+  }
+
+
 }

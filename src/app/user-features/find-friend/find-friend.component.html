@@ -1,7 +1,25 @@
 <ul class="list-group" *ngFor="let user of users">
-    <li class="list-group-item clickable" 
-    [routerLink]="['/facebook/friend-profile', user.id]">
+    <li class="list-group-item clickable" [routerLink]="['/facebook/friend-profile', user.id]"
+        *ngIf="userService.logedUser.id != user.id">
         <img src="../../../assets/images/user.png" class="w-25" alt="image">
         <span class="mr-4">{{user.firstName + " " + user.lastName }}</span>
+        <span *ngFor="let invitation of invitationsBySender">
+            <button class="btn btn-primary" *ngIf="invitation.receiver.id == user.id && 
+                invitation.status == status.WAITING">
+                No response until now
+            </button>
+            <button class="btn btn-primary" *ngIf="invitation.receiver.id == user.id && 
+                invitation.status == status.ACCEPT">
+                You are now friends
+            </button>
+            <button class="btn btn-primary" *ngIf="invitation.receiver.id == user.id && 
+                invitation.status == status.REFUSE">
+                Request refuesed
+            </button>
+            <button class="btn btn-primary"
+                *ngIf="user.id != invitation.receiver.id &&invitation.status != status.REFUSE && invitation.status != status.WAITING && invitation.status != status.ACCEPT">
+                Add friend
+            </button>
+        </span>
     </li>
 </ul>
