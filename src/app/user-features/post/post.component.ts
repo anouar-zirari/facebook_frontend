@@ -4,6 +4,7 @@ import { Postservice } from 'src/app/service/post.service';
 import { Post } from 'src/app/model/post';
 import { UserService } from 'src/app/service/user.service';
 import { PostOptionsComponent } from '../post-options/post-options.component';
+import { ImageComponent } from '../image/image.component';
 
 @Injectable(
   {
@@ -14,7 +15,7 @@ import { PostOptionsComponent } from '../post-options/post-options.component';
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [CommonModule, PostOptionsComponent],
+  imports: [CommonModule, PostOptionsComponent, ImageComponent],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })

@@ -20,6 +20,7 @@ export class StatusComponent implements OnInit {
   @ViewChild(ImageComponent) viewData!: ImageComponent;
   post: Post = new Post();
   selectedImage!: any;
+  fromStatus = 'imageFromStatus';
 
   constructor(
     private postService: Postservice, 

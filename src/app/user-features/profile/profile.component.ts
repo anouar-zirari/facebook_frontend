@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.shownElement = 'posts';
+    this.getFriendForUser();
   }
 
   toggle(elementName: string){

@@ -15,6 +15,9 @@ export class ImageComponent implements OnInit {
 
   @Input('postId')
   postId: any;
+  @Input('fromStatus')
+  fromStatus!: string;
+  
 
   selectedFile!: File;
   message!: string;
@@ -23,10 +26,13 @@ export class ImageComponent implements OnInit {
   imageUrl!: any;
   imagePath!: any;
   checkForImage: boolean = false;
+  showImage: boolean = false;
+  showforStatus: boolean = false;
 
   constructor(private imageService: imageService) { }
 
   ngOnInit(): void {
+    this.getImage()
   }
 
   onFileChanged(e: any) {
@@ -60,8 +66,8 @@ export class ImageComponent implements OnInit {
   // }
 
   getImage() {
-
-    this.imageService.getFiles(2).subscribe(
+    this.showImage = true;
+    this.imageService.getFiles(this.postId).subscribe(
 
       (imageBlob: Blob) => {
         console.log(imageBlob);

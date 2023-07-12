@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { NotificationComponent } from './user-features/notification/notification.component';
 import { CommunityComponent } from './user-features/community/community.component';
 
+
 const routes: Routes = [
   {
     path: 'facebook/profile',
@@ -32,6 +33,7 @@ const routes: Routes = [
     path: 'facebook/community',
     component: CommunityComponent
   }
+  
   
   
 ];
