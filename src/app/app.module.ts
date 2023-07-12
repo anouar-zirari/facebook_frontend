@@ -11,10 +11,12 @@ import { FindFriendComponent } from './user-features/find-friend/find-friend.com
 import { LoginComponent } from './login/login.component';
 import { CommunityComponent } from './user-features/community/community.component';
 import { PostOptionsComponent } from './user-features/post-options/post-options.component';
+import { ImageComponent } from './user-features/image/image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+  
     
     
   ],
@@ -25,6 +27,7 @@ import { PostOptionsComponent } from './user-features/post-options/post-options.
     HttpClientModule, 
     NavBarComponent,
     LoginComponent,
+    ImageComponent
     
   ],
   providers: [],

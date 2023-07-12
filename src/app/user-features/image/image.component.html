@@ -1,0 +1,17 @@
+<img *ngIf="checkForImage" [src]="imageUrl" style="width: 300px; height: 200px;" class="img-fluid rounded-top"
+    alt="bla bla" /><br>
+<!-- <input *ngIf="checkForImage" type="button" (click)="onUpload()" value="upload" class="btn btn-success"> -->
+<label for="selecteFile" class="btn btn-primary" >Add image</label>
+
+<input type="file" (change)="onFileChanged($event)" accept="image/*" id="selecteFile" hidden>
+
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+    </div>
+</div>
+
+<!-- <button class="btn btn-primary" (click)="getImage()">get the image</button> -->
+
+
+

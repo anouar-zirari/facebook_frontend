@@ -77,7 +77,7 @@ export class FriendProfileComponent implements OnInit {
   getInvitationBySenderAndReceiver(senderId: number, receiverId: number){
     this.invitationService.getInvitationBySenderAndReceiver(senderId, receiverId).subscribe(data => {
       this.invitation = data;
-      console.log(data);
+      console.log("****************" +"senderId :" + senderId + "receiverId :" + receiverId +"******" + data);
       
     })
   }

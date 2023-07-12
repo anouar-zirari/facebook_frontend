@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Post } from "../model/post";
 import { Observable, Subject } from "rxjs";
@@ -21,9 +21,14 @@ export class Postservice {
 
     constructor(private http: HttpClient, private userService: UserService) { }
 
-    share(post: Post): Observable<Post> {
+    share(post: Post, file: File): Observable<HttpEvent<any>> {
         post.user = this.userService.user;
-        return this.http.post<Post>(`${this.apiUrl}/save`, post);
+        console.log(JSON.stringify(post));
+        
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        formData.append('post', JSON.stringify(post));
+        return this.http.post<any>(`${this.apiUrl}/save`, formData);
     }
 
     getPostsByUser() {

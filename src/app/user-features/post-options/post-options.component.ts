@@ -38,7 +38,6 @@ export class PostOptionsComponent implements OnInit {
   findAllCommentForPost() {
     this.postOptionService.getAllCommentForPost(this.post.id).subscribe(
       data => {
-        console.log(data);
         this.comments = data;
       }
     );
