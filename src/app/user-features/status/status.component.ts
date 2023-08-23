@@ -23,19 +23,29 @@ export class StatusComponent implements OnInit {
   fromStatus = 'imageFromStatus';
 
   constructor(
-    private postService: Postservice, 
+    private postService: Postservice,
     private postComponent: PostComponent,
     private imageService: imageService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }
 
-  share(){
-    this.postService.share(this.post, this.viewData.selectedFile).subscribe(() => {  
-      this.postService.emitPostAdded();
-      alert('Post has been added');
-    }); 
+  share() {
+    if (this.viewData.selectedFile === undefined) {
+      this.postService.savePost(this.post).subscribe(
+        () => {
+          this.postService.emitPostAdded();
+        }
+      )
+    } else {
+
+      this.postService.share(this.post, this.viewData.selectedFile).subscribe(() => {
+        debugger
+        this.postService.emitPostAdded();
+        alert('Post has been added');
+      });
+    }
   }
 
   // onFileChanged(event: any) {

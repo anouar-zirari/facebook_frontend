@@ -44,12 +44,13 @@ export class PostOptionsComponent implements OnInit {
   }
 
   openComments() {
-    this.commentll = true;
+    if(this.commentll == false)
+      this.commentll = true;
+    else
+      this.commentll = false;
   }
 
-  closeComments(){
-    this.commentll = false;
-  }
+
 
   addComment() {
       this.postOptionService.savePostOption(

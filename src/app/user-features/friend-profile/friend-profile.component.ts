@@ -23,7 +23,7 @@ export class FriendProfileComponent implements OnInit {
 
   shownElement = '';
   userId!: number;
-  user!: User;
+  user: User = new User();
   friends: User[] = [];
   invitation: Invitation = new Invitation();
   status = Status;
@@ -31,23 +31,25 @@ export class FriendProfileComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private friendProfileService: FreindProfileService,
-    private userService: UserService,
+    public userService: UserService,
     private invitationService: InvitationService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.shownElement = 'posts';
     this.userId = this.activeRoute.snapshot.params['userId'];
+
     this.getUserById(this.userId);
     this.getInvitationBySenderAndReceiver(this.userService.logedUser.id, this.userId);
+
   }
 
-  toggle(elementName: string){
+  toggle(elementName: string) {
     this.shownElement = elementName;
   }
 
-  getUserById(id: number){
-    return this.friendProfileService.getUserById(id).subscribe(
+  getUserById(id: number) {
+    this.friendProfileService.getUserById(id).subscribe(
       data => {
         this.user = data;
         console.log('this is friend list :' + this.user.friends);
@@ -55,7 +57,7 @@ export class FriendProfileComponent implements OnInit {
     );
   }
 
-  getFriendForUser(){
+  getFriendForUser() {
     return this.userService.getFriendForUser(this.userId).subscribe(
       data => {
         this.friends = data;
@@ -63,23 +65,26 @@ export class FriendProfileComponent implements OnInit {
     )
   }
 
-  addFriend(receiver: User, sender = this.userService.user){
+  addFriend(receiver: User, sender = this.userService.user) {
     let invitation: Invitation = new Invitation(receiver, sender);
 
     this.invitationService.friendshipInvitation(invitation).subscribe(
       // change the alert by toast
-      () => 
+      () =>
         alert("A friend request has been sent")
-          
-    );
-  } 
 
-  getInvitationBySenderAndReceiver(senderId: number, receiverId: number){
-    this.invitationService.getInvitationBySenderAndReceiver(senderId, receiverId).subscribe(data => {
-      this.invitation = data;
-      console.log("****************" +"senderId :" + senderId + "receiverId :" + receiverId +"******" + data);
-      
-    })
+    );
+  }
+
+  getInvitationBySenderAndReceiver(senderId: number, receiverId: number) {
+    if (this.userId) {
+      this.invitationService.getInvitationBySenderAndReceiver(senderId, receiverId).subscribe(data => {
+        this.invitation = data;
+        
+        console.log("****************" + "senderId :" + senderId + "receiverId :" + receiverId + "******" + data);
+
+      })
+    }
   }
 
 

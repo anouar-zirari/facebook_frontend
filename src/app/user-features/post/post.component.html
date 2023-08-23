@@ -1,14 +1,26 @@
+<div *ngIf="posts.length == 0" class="alert alert-primary">
+    <strong>No events untile now</strong>
+</div>
+
 <div class="card text-center w-75 mx-auto mt-3" *ngFor="let post of posts">
-    <div class="text-start inline-block">
-        <img src="../../../assets/images/téléchargement.jpg" alt="" class="w-25">
+    <!-- <div class="text-start inline-block">
+        <img src="../../../assets/images/téléchargement.jpg" alt="" class="w-25 rounded-circle img-thumbnail">
         <p>{{ post.user.firstName + " " + post.user.lastName }} <br> 
             <small>{{post.date | date}}</small>
         </p>
-        
+    </div> -->
+    <div class="justify-content-start">
+
+        <img src="../../../assets/images/téléchargement.jpg" alt="" class="w-25 rounded-circle float-start m-2">
+        <p class="float-start p-2 mt-4">
+            {{ post.user.firstName + " " + post.user.lastName }} <br>
+            <small>{{post.date | date}}</small>
+        </p>
     </div>
+
     <div class="card-body">
         <p>{{post.content}}</p>
-        <app-image [postId]="post.id" ></app-image>
+        <app-image [postId]="post.id"></app-image>
     </div>
     <!-- <img class="card-img-top" src="" alt="Title"> -->
     <hr>

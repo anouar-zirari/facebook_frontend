@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <div class="modal-title">
+        <h2>Session expired</h2>
+    </div>
+</div>
+<div class="modal-body text-center">
+    <p>Your session is expired, you have to login</p>
+    <button class="btn btn-primary" routerLink="/login" (click)="modalService.closeTokenExpiredPage()">Login</button>
+</div>

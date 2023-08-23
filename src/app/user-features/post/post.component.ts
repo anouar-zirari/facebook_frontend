@@ -5,6 +5,8 @@ import { Post } from 'src/app/model/post';
 import { UserService } from 'src/app/service/user.service';
 import { PostOptionsComponent } from '../post-options/post-options.component';
 import { ImageComponent } from '../image/image.component';
+import { ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { __param } from 'tslib';
 
 @Injectable(
   {
@@ -26,9 +28,11 @@ export class PostComponent implements OnInit {
   @Input("mode")
   mode!: string;
 
-  constructor(private postService: Postservice, public userService: UserService) { }
+  constructor(private postService: Postservice, public userService: UserService,
+    private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+   
     if(this.mode == 'community')
       this.community();
     else
@@ -49,9 +53,18 @@ export class PostComponent implements OnInit {
   }
 
   community(){
-    return this.postService.getCommunity().subscribe(
-      data => this.posts = data
+    
+    let userId: number;
+    this.activatedRouter.params.subscribe(
+      (prams: Params) => {
+        userId = prams['userId']
+        this.postService.getCommunity(userId).subscribe(
+          data => this.posts = data
+        );
+      }
     )
+
+    
   }
 
   

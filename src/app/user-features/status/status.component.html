@@ -8,12 +8,14 @@
         <!-- <input type="text" class="form-control"> -->
         <textarea name="status" cols="30" rows="2" id="textArea" class="form-control"
             placeholder="type anything you want" [(ngModel)]="post.content"></textarea>
-        <div class="mt-2">
+        <div class="d-inline-flex gap-1">
             <!-- add an image or file or vedeo with a dropdown button-->
-            <app-image [fromStatus]="fromStatus"></app-image>
-            <button type="button" class="btn btn-outline-primary" (click)="share()">
-                Share
-            </button>
+                <app-image [fromStatus]="fromStatus" class="float-end"></app-image>
+            
+
+                <button type="button" class="btn btn-outline-primary float-start mt-4" (click)="share()">
+                    Share
+                </button>
         </div>
     </div>
 </div>

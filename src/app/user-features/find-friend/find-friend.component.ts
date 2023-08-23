@@ -54,8 +54,7 @@ export class FindFriendComponent implements OnInit {
   getInvitationBySender() {
     this.invitationService.getInvitationBySender(this.userService.logedUser.id).subscribe(
       data => {
-        this.invitationsBySender = data;
-        
+        this.invitationsBySender = data;  
       }
     )
   }

@@ -14,15 +14,16 @@
                 Add friend
             </button>
             <button class="btn"  
-            *ngIf="invitation.status == status.ACCEPT">
+            *ngIf="!!invitation && invitation.status  == status.ACCEPT">
                 You are friends 
             </button>
             <button class="btn"  
-            *ngIf="invitation.status == status.REFUSE">
+            *ngIf="!!invitation && invitation.status == status.REFUSE && 
+            invitation.sender.id == userService.user.id">
                 Your request has refuesed 
             </button>
             <button class="btn"  
-            *ngIf="invitation.status == status.WAITING">
+            *ngIf="!!invitation && invitation.status == status.WAITING">
                 Waiting for response
             </button>
         </div>
@@ -31,7 +32,7 @@
     <div class="mt-4"></div>
     <!--posts of the user-->
     <div *ngIf="shownElement == 'posts'">
-        <app-post></app-post>
+        <app-post [mode]="'community'"></app-post>
     </div>
     <!--friends of the user-->
     <div *ngIf="shownElement == 'friends'">

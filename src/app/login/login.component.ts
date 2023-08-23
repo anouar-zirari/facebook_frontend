@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
+import { AuthResponse } from '../model/auth-response';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
-  userResponse!: User;
+  userResponse!: AuthResponse;
 
   constructor(
     private loginService: LoginService, 
@@ -32,9 +33,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user).subscribe(
       data => {
         this.userResponse = data;
+        localStorage.setItem('jwtToken', data.token);
+        localStorage.setItem('authResponse', JSON.stringify(data));
         this.loginService.isLogedin = true;
         this.userService.setUser(this.userResponse);
-        this.router.navigateByUrl('facebook/profile')
+        this.router.navigateByUrl('facebook/community');
       }
     )
   }

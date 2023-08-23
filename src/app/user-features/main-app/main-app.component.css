@@ -1,0 +1,9 @@
+.app-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    background-color: #fff; /* Adjust the background color as needed */
+    /* Add any other styling you want for the navbar */
+}

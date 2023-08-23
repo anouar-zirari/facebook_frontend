@@ -8,6 +8,7 @@ import { LoginService } from './service/login.service';
 })
 export class AppComponent {
   title = 'facebookApp';
+  isLogedIn = localStorage.getItem('jwtToken');
 
   constructor(public loginService: LoginService){
 

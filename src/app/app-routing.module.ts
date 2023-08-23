@@ -9,30 +9,40 @@ import { CommunityComponent } from './user-features/community/community.componen
 
 
 const routes: Routes = [
-  {
-    path: 'facebook/profile',
-    component: ProfileComponent
-  },
-  {
-    path: 'facebook/find-friend',
-    component: FindFriendComponent
-  },
-  {
-    path: 'facebook/friend-profile/:userId',
-    component: FriendProfileComponent
-  },
+  // {
+  //   path: 'facebook/profile',
+  //   component: ProfileComponent
+  // },
+  // {
+  //   path: 'facebook/find-friend',
+  //   component: FindFriendComponent
+  // },
+  // {
+  //   path: 'facebook/friend-profile/:userId',
+  //   component: FriendProfileComponent
+  // },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'facebook/notification',
-    component: NotificationComponent
+    path: 'facebook',
+    loadChildren: () => import('./user-features/user-features.module').then(module => module.UserFeaturesModule)
   },
   {
-    path: 'facebook/community',
-    component: CommunityComponent
+    path: '**',
+    redirectTo: 'facebook',
+    pathMatch: 'full'
   }
+
+  // {
+  //   path: 'facebook/notification',
+  //   component: NotificationComponent
+  // },
+  // {
+  //   path: 'facebook/community',
+  //   component: CommunityComponent
+  // }
   
   
   

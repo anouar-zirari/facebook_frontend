@@ -1,7 +1,7 @@
 <ul class="list-group" *ngFor="let user of users">
     <li class="list-group-item clickable" [routerLink]="['/facebook/friend-profile', user.id]"
         *ngIf="userService.logedUser.id != user.id">
-        <img src="../../../assets/images/user.png" class="w-25" alt="image">
-        <span class="mr-4">{{user.firstName + " " + user.lastName }}</span>
+        <img src="../../../assets/images/user.png" class="w-25 float-start" alt="image">
+        <h5 class="float-start mt-5 fw-bold">{{user.firstName + " " + user.lastName }}</h5>
     </li>
 </ul>

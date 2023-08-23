@@ -1,15 +1,15 @@
 <ul class="list-group">
     <!--sended requests-->
     <li class="list-group-item clickable" *ngFor="let notification of notifications">
-        <img src="../../../assets/images/user.png" class="w-25" alt="image">
-        <span class="mr-4" *ngIf="notification.senderId == userServcie.logedUser.id">
+        <img src="../../../assets/images/user.png" class="w-25 float-start" alt="image">
+        <span class="mr-4 float-start mt-3" *ngIf="notification.senderId == userServcie.logedUser.id">
             {{notification.receiverFirstName + " " + notification.receiverLastName}}
-        </span>
+        </span><br>
         <span class="mr-4" *ngIf="notification.senderId != userServcie.logedUser.id">
             {{notification.senderFirstName + " " + notification.senderLastName}}
-        </span>
-        <span class="float-left">{{ notification.date | date}}</span> <br>
-        <div *ngFor="let invitation of invitationsBySender">
+        </span><br>
+        <span class="float-start">{{ notification.date | date}}</span> <br>
+        <div *ngFor="let invitation of invitationsBySender" >
             <span class="alert alert-secondary"
                 *ngIf="notification.senderId == userServcie.logedUser.id && notification.receiverId == invitation.receiver.id && invitation.status === status.WAITING">
                 No response for your request

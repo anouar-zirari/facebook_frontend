@@ -24,11 +24,17 @@ export class Postservice {
     share(post: Post, file: File): Observable<HttpEvent<any>> {
         post.user = this.userService.user;
         console.log(JSON.stringify(post));
-        
+
         const formData: FormData = new FormData();
+
         formData.append('file', file);
         formData.append('post', JSON.stringify(post));
         return this.http.post<any>(`${this.apiUrl}/save`, formData);
+    }
+
+    savePost(post: Post): Observable<Post> {
+        post.user = this.userService.user;
+        return this.http.post<Post>(`${this.apiUrl}/save-post`, post);
     }
 
     getPostsByUser() {
@@ -41,8 +47,22 @@ export class Postservice {
     }
 
 
-    getCommunity() {
-        return this.http.post<Post[]>(`${this.apiUrl}/community`, this.userService.user);
+    getCommunity(userId?: number) {
+        
+        let user = new User();
+        if (!!userId) { 
+            user.id = userId
+        } else {
+            let userJson = JSON.parse(localStorage.getItem('authResponse')!);
+            user = userJson;
+        }
+
+        return this.http.post<Post[]>(`${this.apiUrl}/community`, user);
+    }
+
+    getPostsWithImageId(): Observable<number[]> {
+        let userId = this.userService.user.id;
+        return this.http.get<number[]>(`${this.apiUrl}/post-with-images-id's/${userId}`);
     }
 
 

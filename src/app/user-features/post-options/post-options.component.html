@@ -6,24 +6,34 @@
     <button class="btn">0 Share</button>
 </div>
 <div *ngIf="commentll == true">
-    <div class="row">
-        <div class="col-9">
+    <div class="d-flex mx-2 gap-1 my-4">
+     
             <input type="text" class="form-control" placeholder="Add comment" [(ngModel)]="comment">
-        </div>
-        <div class="col-3">
-            <button class="btn btn-primary" (click)="addComment()">Submit</button>
-        </div>
+
+      
+     
+            <button class="btn btn-primary float-start ml-2" (click)="addComment()">
+                Submit
+            </button>
+       
+
     </div>
 
-    <ul *ngFor="let comment of comments">
-        <li>
-            {{comment.user.firstName +" "+ comment.post.user.lastName}} <br>
-            {{comment.comment}}
+    <ul *ngFor="let comment of comments" class="list-group-flush">
+
+        <li class="list-group-item">
+            <div>
+                <img src="../../../assets/images/user.png" class="float-start comment-image" alt="">
+                <span class="float-start fw-bold mt-2 ">{{comment.user.firstName +" "+
+                    comment.post.user.lastName}}</span>
+            </div><br>
+
+            <p class="mt-3">
+                {{comment.comment}}
+            </p>
+
+
         </li>
     </ul>
-    <div class="text-center mt-4">
-        <button class="btn btn-danger" (click)="closeComments()">
-            Close comment section
-        </button>
-    </div>
+
 </div>
