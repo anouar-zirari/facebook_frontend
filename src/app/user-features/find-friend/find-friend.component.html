@@ -1,6 +1,12 @@
+<input type="text" class="form-control mb-4" placeholder="Search for a friend" 
+(input)="filterFriend($event)">
+
 <ul class="list-group" *ngFor="let user of users">
-    <li class="list-group-item clickable" [routerLink]="['/facebook/friend-profile', user.id]"
-        *ngIf="userService.logedUser.id != user.id">
+    <li class="list-group-item clickable" 
+    *ngIf="searchValue === '' || 
+    (user.firstName && user.firstName.concat(' ', user.lastName).toLowerCase().includes(searchValue)) && 
+    (userService.logedUser.id != user.id)" 
+    [routerLink]="['/facebook/friend-profile', user.id]">
         <img src="../../../assets/images/user.png" class="w-25 float-start" alt="image">
         <h5 class="float-start mt-5 fw-bold">{{user.firstName + " " + user.lastName }}</h5>
     </li>

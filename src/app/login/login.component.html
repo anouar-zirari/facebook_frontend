@@ -1,14 +1,15 @@
 
-<div class="card mx-auto mt-5 p-3 " style="width: 18rem;">
+<div class="card mx-auto w-50 mt-5 p-3 " style="width: 18rem;">
   
   <div class="card-body">
     <h3 class="card-title">Login</h3>
     <div class="mb-3">
-      <input type="text" class="form-control" [(ngModel)]="user.email"> 
-      <input type="password" class="form-control mt-2" [(ngModel)]="user.password">  
+      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="user.email"> 
+      <input type="password" class="form-control mt-2" placeholder="Password"  [(ngModel)]="user.password">  
     </div>
-    <div class="text-center">
+    <div class="d-grid gap-2">
       <button class="btn btn-primary" (click)="login()">Submit</button>
     </div>
+  
   </div>
 </div>

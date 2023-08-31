@@ -21,13 +21,14 @@ export class FindFriendComponent implements OnInit {
   users: User[] = [];
   invitationsBySender: Invitation[] = [];
   status = Status;
+  searchValue: string = '';
 
   constructor(
     private findFriendService: FindFriendService,
     public friendProfileService: FreindProfileService,
     public userService: UserService,
     private invitationService: InvitationService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -35,28 +36,32 @@ export class FindFriendComponent implements OnInit {
   }
 
 
-  getAllUsers(){
+  getAllUsers() {
     return this.findFriendService.getAllUsers().subscribe(
       data => this.users = data
     )
   }
 
-  addFriend(receiver: User, sender = this.userService.user){
+  addFriend(receiver: User, sender = this.userService.user) {
     let invitation: Invitation = new Invitation(receiver, sender);
 
     this.invitationService.friendshipInvitation(invitation).subscribe(
       // change the alert by toast
-      () => 
-        alert("A friend request has been sent")    
+      () =>
+        alert("A friend request has been sent")
     );
-  } 
+  }
 
   getInvitationBySender() {
     this.invitationService.getInvitationBySender(this.userService.logedUser.id).subscribe(
       data => {
-        this.invitationsBySender = data;  
+        this.invitationsBySender = data;
       }
     )
+  }
+
+  filterFriend(name: any) {
+    this.searchValue = name.target.value;
   }
 
 }
