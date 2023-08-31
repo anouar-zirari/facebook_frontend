@@ -33,6 +33,10 @@
         </div>
     </div>
 
+    <button *ngIf="scrollingDistance >= 1600" class="btn btn-primary btn-post" (click)="modalService.openStatusComponent()">
+        Add Posts
+    </button>
+
     
     
 

@@ -1,2 +1,3 @@
-<app-status></app-status>
+<app-status id="status"></app-status>
 <app-post [mode]="'community'"></app-post>
+<button *ngIf="scrollDistance >= 1600" class="btn-post btn btn-primary" (click)="modalService.openStatusComponent()">Add posts</button>
