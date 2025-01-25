@@ -1,0 +1,66 @@
+<div class="card w-50 mx-auto mt-5">
+    <div class="card-body">
+        <h4 class="card-title">Registration</h4>
+        <form [formGroup]="registerForm" (submit)="onSubmit()" class="my-3">
+            <div class="mb-3">
+                <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': 
+                !registerForm.get('firstName')?.dirty 
+                && registerForm.touched, 
+                'is-valid': registerForm.get('firstName')?.dirty 
+                && !registerForm.touched 
+                &&  registerForm.get('firstName')?.dirty}" />
+                <p class="text-danger"
+                    *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid">
+                    You must enter your firstname
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': 
+                !registerForm.get('lastName')?.dirty 
+                && registerForm.touched, 
+                'is-valid': registerForm.get('lastName')?.dirty 
+                && !registerForm.touched 
+                &&  registerForm.get('lastName')?.dirty}" />
+            </div>
+            <p *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">bla bla</p>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': 
+                !registerForm.get('email')?.dirty 
+                && registerForm.touched, 
+                'is-valid': registerForm.get('email')?.dirty 
+                && !registerForm.touched 
+                &&  registerForm.get('email')?.dirty}" />
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" formControlName="password" [ngClass]="{'is-invalid': 
+                !registerForm.get('password')?.dirty 
+                && registerForm.touched, 
+                'is-valid': registerForm.get('password')?.dirty 
+                && !registerForm.touched 
+                &&  registerForm.get('password')?.dirty}" />
+                <small class="text-danger"
+                    *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched && registerForm.get('password')?.dirty">
+                    <span *ngIf="registerForm.get('password')?.hasError('required')">
+                        Password is required.
+                    </span>
+                    <span *ngIf="registerForm.get('password')?.hasError('minlength')">
+                        Password must be at least 8 characters long.
+                    </span>
+                    <span *ngIf="registerForm.get('password')?.hasError('maxlength')">
+                        Password cannot exceed 20 characters.
+                    </span>
+                    <span *ngIf="registerForm.get('password')?.hasError('pattern')">
+                        Password must contain at least one lowercase letter, one uppercase letter, one digit, and one
+                        special character.
+                    </span>
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 float-end">Register</button>
+
+        </form>
+    </div>
+</div>
+

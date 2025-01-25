@@ -21,6 +21,7 @@ export class StatusComponent implements OnInit {
   post: Post = new Post();
   selectedImage!: any;
   fromStatus = 'imageFromStatus';
+  btnVisibility: boolean = true;
 
   constructor(
     private postService: Postservice,
@@ -46,6 +47,10 @@ export class StatusComponent implements OnInit {
         alert('Post has been added');
       });
     }
+  }
+
+  btnVisibile() {
+    this.btnVisibility = false;
   }
 
   // onFileChanged(event: any) {

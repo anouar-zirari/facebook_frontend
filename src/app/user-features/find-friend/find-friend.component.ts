@@ -60,8 +60,8 @@ export class FindFriendComponent implements OnInit {
     )
   }
 
-  filterFriend(name: any) {
-    this.searchValue = name.target.value;
+  filterFriend(name: Event) {
+    this.searchValue = (name.target as HTMLInputElement).value;
   }
 
 }

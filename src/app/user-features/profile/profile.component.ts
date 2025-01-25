@@ -42,8 +42,7 @@ export class ProfileComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   getScrollingDistance($event: any) {
     this.scrollingDistance = window.scrollY;
-    console.log(this.scrollingDistance);
-    
+    console.log(this.scrollingDistance);   
   }
 
 

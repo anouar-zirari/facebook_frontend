@@ -6,6 +6,7 @@ import { FriendProfileComponent } from './user-features/friend-profile/friend-pr
 import { LoginComponent } from './login/login.component';
 import { NotificationComponent } from './user-features/notification/notification.component';
 import { CommunityComponent } from './user-features/community/community.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent
   },
   {
     path: 'facebook',

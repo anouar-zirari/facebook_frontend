@@ -10,15 +10,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
 import { HttpInterceptorProvider } from './http-interceptor-provider';
 import { TokenExpiredPageComponent } from './token-expired-page/token-expired-page.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ImageComponent } from './user-features/image/image.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TokenExpiredPageComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -27,6 +27,8 @@ import { TokenExpiredPageComponent } from './token-expired-page/token-expired-pa
     HttpClientModule,
     NavBarComponent,
     LoginComponent,
+    RegistrationComponent,
+    ImageComponent
 
   ],
   providers: [HttpInterceptorProvider],
